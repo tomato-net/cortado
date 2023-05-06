@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cortado-dev-02031-authRole",
+      "UnauthRoleArn": "arn:aws:iam::234566038455:role/amplify-cortado-dev-02031-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::234566038455:role/amplify-cortado-dev-02031-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-cortado-dev-02031-deployment",
+      "UnauthRoleName": "amplify-cortado-dev-02031-unauthRole",
+      "StackName": "amplify-cortado-dev-02031",
+      "StackId": "arn:aws:cloudformation:eu-central-1:234566038455:stack/amplify-cortado-dev-02031/99ed8bc0-ec64-11ed-8511-0664055ce5d8",
+      "AmplifyAppId": "d6w0icu4bv2dy"
+    }
+  }
+}
