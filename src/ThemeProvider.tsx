@@ -21,7 +21,7 @@ export const themes: Themes = {
 	light: createTheme({
 		palette: {
 			mode: 'light',
-		}
+		},
 	})
 }
 
