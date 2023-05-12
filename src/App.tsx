@@ -3,18 +3,17 @@ import Crossword from './Crossword';
 import {Box, CssBaseline} from '@mui/material';
 
 import './App.css';
+import {ThemeProvider} from './ThemeProvider';
 
 function App() {
   return (
-	<React.Fragment>
-		<CssBaseline />
-
-		<Box sx={{ display: 'flex' }}>
-			<Box sx={{ width: '50%' }}>
+	<ThemeProvider>
+		<Box>
+			<Box sx={{ maxWidth: '1500px' }}>
 				<Crossword />
 			</Box>
 		</Box>
-	</React.Fragment>
+	</ThemeProvider>
   );
 }
 

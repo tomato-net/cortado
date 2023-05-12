@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useCallback, useRef} from 'react';
 
-import { Crossword as C } from '@jaredreisinger/react-crossword';
+import { Crossword as C, CrosswordImperative } from '@jaredreisinger/react-crossword';
+import {Box, Button} from '@mui/material';
+import {useTheme} from './ThemeProvider';
 
 const data = {
 	across: {
@@ -196,5 +198,26 @@ const data = {
 }
 
 export default function Crossword() {
-	return <C data={data} />
+	const crossword = useRef<CrosswordImperative>(null)
+
+	const fillAnswers = useCallback<React.MouseEventHandler>((event) => {
+		crossword.current?.fillAllAnswers()
+	}, [])
+
+	const { onComplete } = useTheme();
+
+	return <Box sx={{display: 'flex', flex: 'auto' }}>
+		<Box>
+			<Button onClick={fillAnswers}>
+				Complete
+			</Button>
+		</Box>
+		<C
+			ref={crossword}
+			data={data}
+			useStorage={true}
+			onCrosswordComplete={onComplete}
+		/>
+	</Box>
+
 }
