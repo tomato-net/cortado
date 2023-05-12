@@ -9,8 +9,8 @@ function App() {
 	<React.Fragment>
 		<CssBaseline />
 
-		<Box sx={{ justifyContent: 'center', display: 'flex' }}>
-			<Box sx={{ width: 300 }}>
+		<Box sx={{ display: 'flex' }}>
+			<Box sx={{ width: '50%' }}>
 				<Crossword />
 			</Box>
 		</Box>
