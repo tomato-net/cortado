@@ -9,7 +9,7 @@ function App() {
   return (
 	<ThemeProvider>
 		<Box>
-			<Box sx={{ maxWidth: '1500px' }}>
+			<Box sx={{ height: '400px' }}>
 				<Crossword />
 			</Box>
 		</Box>

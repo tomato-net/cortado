@@ -1,7 +1,7 @@
 import React, {useCallback, useRef} from 'react';
 
-import { Crossword as C, CrosswordImperative } from '@jaredreisinger/react-crossword';
-import {Box, Button} from '@mui/material';
+import {CrosswordImperative, CrosswordProvider, CrosswordGrid, DirectionClues} from '@jaredreisinger/react-crossword';
+import {Box, Button, Card, Grid, Paper, Stack} from '@mui/material';
 import {useTheme} from './ThemeProvider';
 
 const data = {
@@ -206,18 +206,24 @@ export default function Crossword() {
 
 	const { onComplete } = useTheme();
 
-	return <Box sx={{display: 'flex', flex: 'auto' }}>
-		<Box>
-			<Button onClick={fillAnswers}>
-				Complete
-			</Button>
-		</Box>
-		<C
-			ref={crossword}
-			data={data}
-			useStorage={true}
-			onCrosswordComplete={onComplete}
-		/>
+	return <Box sx={{position: 'relative', display: 'flex', flexDirection: 'column', minHeight: 0, verticalAlign: 'baseline' }}>
+		<CrosswordProvider data={data} useStorage={true} onCrosswordComplete={onComplete} ref={crossword}>
+			<Box sx={{maxWidth: '1132px', maxHeight: '600px', alignItems: 'flex-start', display: 'flex', height: '100vh', justifyContent: 'space-around', p: 10, margin: 'auto'}}>
+				<Box sx={{height: '100%', width: '48%', display: 'flex'}}>
+					<CrosswordGrid />
+				</Box>
+				<Box sx={{height: '100%', width: '48%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', maxHeight: '625px', verticalAlign: 'baseline'}}>
+					<Box sx={{width: '47%', height: '100%', display: 'block', pl: '10px', overflowY: 'scroll', mt: '10px'}}>
+							<DirectionClues direction={"across"} label={""} />
+					</Box>
+					<Box sx={{width: '47%', height: '100%', display: 'block', pl: '10px', overflowY: 'scroll', mt: '10px'}}>
+						<Paper sx={{overflow: 'auto'}}>
+							<DirectionClues direction={"down"} label={""} />
+						</Paper>
+					</Box>
+				</Box>
+			</Box>
+		</CrosswordProvider>
 	</Box>
 
 }
