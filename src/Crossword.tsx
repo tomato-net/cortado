@@ -3,8 +3,10 @@ import React, {useCallback, useRef} from 'react';
 import {CrosswordImperative, CrosswordProvider, CrosswordGrid, DirectionClues} from '@jaredreisinger/react-crossword';
 import {Box, Button, Card, Grid, Paper, Stack} from '@mui/material';
 import {useTheme} from './ThemeProvider';
+import {CluesInput, Direction} from '@jaredreisinger/react-crossword/dist/types';
+import {ClueBox} from './ClueBox';
 
-const data = {
+const data: CluesInput = {
 	across: {
 		1: {
 			clue: 'Plan the perfect heist using creative problem solving, brute force, and everything around you',
@@ -200,16 +202,14 @@ const data = {
 export default function Crossword() {
 	const crossword = useRef<CrosswordImperative>(null)
 
-	const fillAnswers = useCallback<React.MouseEventHandler>((event) => {
-		crossword.current?.fillAllAnswers()
-	}, [])
 
 	const { onComplete } = useTheme();
 
 	return <Box sx={{position: 'relative', display: 'flex', flexDirection: 'column', minHeight: 0, verticalAlign: 'baseline' }}>
-		<CrosswordProvider data={data} useStorage={true} onCrosswordComplete={onComplete} ref={crossword}>
-			<Box sx={{maxWidth: '1132px', maxHeight: '600px', alignItems: 'flex-start', display: 'flex', height: '100vh', justifyContent: 'space-around', p: 10, margin: 'auto'}}>
-				<Box sx={{height: '100%', width: '48%', display: 'flex'}}>
+		<CrosswordProvider data={data} useStorage={true} onCrosswordComplete={(correct) => correct ? onComplete() : null } ref={crossword}>
+			<Box sx={{maxWidth: '1300px', maxHeight: '800px', alignItems: 'flex-start', display: 'flex', height: '100vh', justifyContent: 'space-around', p: 10, margin: 'auto'}}>
+				<Box sx={{height: '100%', width: '48%', display: 'flex', flexDirection: 'column'}}>
+					<ClueBox />
 					<CrosswordGrid />
 				</Box>
 				<Box sx={{height: '100%', width: '48%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', maxHeight: '625px', verticalAlign: 'baseline'}}>
